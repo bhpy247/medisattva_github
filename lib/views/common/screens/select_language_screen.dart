@@ -5,6 +5,8 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../../../backend/common/app_provider.dart';
+import '../../../configs/constants.dart';
+import '../../../utils/shared_pref_manager.dart';
 
 class SelectLanguageScreen extends StatefulWidget {
   static const String routeName = "/SelectLanguageScreen";
@@ -17,6 +19,7 @@ class SelectLanguageScreen extends StatefulWidget {
 
 class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
   late ThemeData themeData;
+  SharedPrefManager prefManager = SharedPrefManager();
 
   @override
   Widget build(BuildContext context) {
@@ -61,6 +64,7 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                       onTap: () {
                         AppProvider provider = context.read<AppProvider>();
                         provider.selectedLocale.set(value: Locale("${AppLocalizations.supportedLocales.first}"));
+                        prefManager.setString(SharePreferenceKeys.selectedLanguage, "${AppLocalizations.supportedLocales.first}");
                       },
                       backGroundColor: themeData.primaryColor,
                       borderColor: themeData.primaryColor,
@@ -77,6 +81,7 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                       onTap: () {
                         AppProvider provider = context.read<AppProvider>();
                         provider.selectedLocale.set(value: Locale("${AppLocalizations.supportedLocales.last}"));
+                        prefManager.setString(SharePreferenceKeys.selectedLanguage, "${AppLocalizations.supportedLocales.last}");
                       },
                       textColor: themeData.primaryColor,
                       borderColor: themeData.primaryColor,

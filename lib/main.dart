@@ -45,16 +45,6 @@ class MainApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           navigatorKey: NavigationController.mainScreenNavigator,
           title: "MEDISATTVA",
-          // localizationsDelegates: const [
-          //   AppLocalizations.delegate, // Add this line
-          //   GlobalMaterialLocalizations.delegate,
-          //   GlobalWidgetsLocalizations.delegate,
-          //   GlobalCupertinoLocalizations.delegate,
-          // ],
-          // supportedLocales: const [
-          //   Locale('en'), // English
-          //   Locale('es'),
-          // ],
           localizationsDelegates: const [
             GlobalMaterialLocalizations.delegate,
             GlobalWidgetsLocalizations.delegate,

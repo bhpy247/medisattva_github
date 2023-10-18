@@ -2,9 +2,14 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:medisattva_github/utils/extensions.dart';
+import 'package:provider/provider.dart';
+import '../../../backend/common/app_provider.dart';
 import '../../../backend/navigation/navigation_controller.dart';
 import '../../../backend/navigation/navigation_operation_parameters.dart';
 import '../../../backend/navigation/navigation_type.dart';
+import '../../../configs/constants.dart';
+import '../../../utils/shared_pref_manager.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String routeName = "/SplashScreen";
@@ -20,12 +25,24 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> checkLogin({required bool isCheckAuthentication}) async {
     await Future.delayed(const Duration(seconds: 2));
-    NavigationController.navigateToSelectLanguageScreen(
-      navigationOperationParameters: NavigationOperationParameters(
-        context: context,
-        navigationType: NavigationType.pushNamedAndRemoveUntil,
-      ),
-    );
+    SharedPrefManager prefManager = SharedPrefManager();
+    String? languageCode = await prefManager.getString(SharePreferenceKeys.selectedLanguage);
+
+    if(languageCode != null){
+      if(context.checkMounted() && context.mounted){
+        AppProvider provider = context.read<AppProvider>();
+        provider.selectedLocale.set(value: Locale(languageCode));
+      }
+    }
+
+    if(context.checkMounted() && context.mounted) {
+      NavigationController.navigateToSelectLanguageScreen(
+        navigationOperationParameters: NavigationOperationParameters(
+          context: context,
+          navigationType: NavigationType.pushNamedAndRemoveUntil,
+        ),
+      );
+    }
 
     /* String tag = MyUtils.getNewId();
     MyPrint.printOnConsole("SplashScreen().checkLogin() called", tag: tag);
