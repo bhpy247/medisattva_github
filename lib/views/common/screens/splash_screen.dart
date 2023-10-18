@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../../../backend/navigation/navigation_controller.dart';
 import '../../../backend/navigation/navigation_operation_parameters.dart';
 import '../../../backend/navigation/navigation_type.dart';
-import '../../../configs/app_colors.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String routeName = "/SplashScreen";
@@ -20,8 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   late ThemeData themeData;
 
   Future<void> checkLogin({required bool isCheckAuthentication}) async {
-    await Future.delayed(const Duration(seconds: 15));
-    await Future.delayed(const Duration(minutes: 15));
+    await Future.delayed(const Duration(seconds: 2));
     NavigationController.navigateToSelectLanguageScreen(
       navigationOperationParameters: NavigationOperationParameters(
         context: context,
@@ -122,22 +120,45 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     themeData = Theme.of(context);
-
     return SafeArea(
       child: Scaffold(
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                "assets/basic/splash_image.png",
-                width: 200,
-                height: 150,
-              ),
-            ],
+          child:  Center(
+            child: Image.asset(
+              "assets/basic/splash_image.png",
+              width: 200,
+              height: 150,
+            ),
           ),
+
+          // Column(
+          //   crossAxisAlignment: CrossAxisAlignment.stretch,
+          //   mainAxisAlignment: MainAxisAlignment.center,
+          //   children: [
+          //     Text(AppLocalizations.of(context)
+          //       ?.helloWorld ?? ""),
+          //     MaterialButton(
+          //       onPressed: () async {
+          //         AppProvider provider = context.read<AppProvider>();
+          //         provider.selectedLocale.set(value: Locale("hi"));
+          //         // MyPrint.printOnConsole("error: ${AppLocalization.supportedLocales.last}");
+          //         // await AppLocalizations.delegate.load(AppLocalizations.supportedLocales.last).catchError((e){
+          //         //   return "";
+          //         // });
+          //         setState(() {
+          //
+          //         });
+          //       },
+          //       child: Text("Change"),
+          //     ),
+          //     Image.asset(
+          //       "assets/basic/splash_image.png",
+          //       width: 200,
+          //       height: 150,
+          //     ),
+          //   ],
+          // ),
         ),
       ),
     );

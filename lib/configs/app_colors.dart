@@ -14,10 +14,10 @@ class Styles{
   //endregion
 
   Color lightPrimaryColor = const Color(0xffBE2626);
-  Color darkPrimaryColor = const Color(0xff0F6CBD);
+  Color darkPrimaryColor = const Color(0xffBE2626);
 
-  Color lightPrimaryVariant = const Color(0xff0F6CBD).withOpacity(0.6);
-  Color darkPrimaryVariant = const Color(0xff0F6CBD).withOpacity(0.6);
+  Color lightPrimaryVariant = const Color(0xffBE2626).withOpacity(0.6);
+  Color darkPrimaryVariant = const Color(0xffBE2626).withOpacity(0.6);
 
   Color lightSecondaryColor = Colors.blueAccent;
   Color darkSecondaryColor = Colors.blueAccent;
