@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:medisattva_github/views/common/components/common_button.dart';
 import 'package:medisattva_github/views/common/components/common_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import '../../../configs/app_colors.dart';
+import '../../../utils/date_representation.dart';
 import '../../../utils/my_print.dart';
 import '../../common/components/app_logo_widget.dart';
 import '../../common/components/common_text_formfield.dart';
@@ -23,6 +25,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
   bool isLoading = false;
   final _formKey = GlobalKey<FormState>();
   bool isObscure = true;
+  DateTime? dateOfBirth;
+
+  Future<void> pickDate() async {
+
+    DateTime? dateTime = await showDatePicker(
+      context: context,
+      initialDate: dateOfBirth ?? DateTime.now(),
+      firstDate: DateTime(1960),
+      lastDate: DateTime.now(),
+      builder: (BuildContext context, Widget? child) {
+        return Theme(
+          data: themeData.copyWith(
+            colorScheme: ColorScheme.light(
+              primary: Styles().lightPrimaryColor, // header background color
+              onPrimary: Colors.black,
+              surface: Styles().lightPrimaryColor,
+              onSecondary: Colors.white,
+            ),
+          ),
+          child: child ?? const SizedBox(),
+        );
+      },
+    );
+
+    dateOfBirth = dateTime ?? dateOfBirth;
+    setState(() {});
+
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -103,7 +135,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             return null;
           },
         ),
-        SizedBox(height: 15,),
+        const SizedBox(height: 15,),
         CommonTextFormField(
             title: 'Surname',
             hintText: 'Dave',
@@ -132,9 +164,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
         ),
         SizedBox(height: 15,),
-        CommonTextFormField(
+        InkWell(
+          onTap: () async {
+            await pickDate();
+          },
+          child: CommonTextFormField(
             title: 'Date of Birth',
-            hintText: 'Dave',
+            hintText: dateOfBirth != null ? DatePresentation.ddMMyyyyFormatter(dateOfBirth!.millisecondsSinceEpoch.toString()) : 'Date of Birth',
+            enabled: false,
+          ),
         ),
       ],
     );
@@ -161,8 +199,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
         ),
         SizedBox(height: 15,),
         CommonTextFormField(
-            title: 'Password',
-            hintText: 'password',
+          title: 'Password',
+          hintText: 'password',
           obscureText: isObscure,
           validator: (value) {
             if (value == null || value.isEmpty) {
@@ -175,9 +213,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 isObscure = !isObscure;
                 setState(() {});
               },
-              child: Icon(!isObscure ? Icons.visibility_outlined : Icons.visibility_off_outlined, color: Colors.grey)),
-
-
+              child: Icon(!isObscure ? Icons.visibility_outlined : Icons.visibility_off_outlined, color: Colors.grey),
+          ),
         ),
       ],
     );
