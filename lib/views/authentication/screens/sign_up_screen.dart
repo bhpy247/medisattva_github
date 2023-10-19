@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:medisattva_github/views/common/components/common_button.dart';
 import 'package:medisattva_github/views/common/components/common_text.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import '../../../configs/app_colors.dart';
 import '../../../utils/date_representation.dart';
 import '../../../utils/my_print.dart';
 import '../../common/components/app_logo_widget.dart';
 import '../../common/components/common_text_formfield.dart';
-import '../../common/components/loading_widget.dart';
 import '../../common/components/modal_progress_hud.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -28,7 +27,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   DateTime? dateOfBirth;
 
   Future<void> pickDate() async {
-
     DateTime? dateTime = await showDatePicker(
       context: context,
       initialDate: dateOfBirth ?? DateTime.now(),
@@ -48,13 +46,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
         );
       },
     );
-
     dateOfBirth = dateTime ?? dateOfBirth;
     setState(() {});
-
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -219,9 +213,4 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ],
     );
   }
-
-
-
-
-
 }

@@ -11,6 +11,7 @@ class Styles{
   static Color shimmerHighlightColor = const Color(0xfff2f2f2);
   static Color shimmerBaseColor = const Color(0xffb6b6b6);
   static Color shimmerContainerColor = const Color(0xffc2c2c2);
+
   //endregion
 
   Color lightPrimaryColor = const Color(0xffBE2626);
@@ -47,5 +48,11 @@ class Styles{
   Color darkFocusedTextFormFieldColor = const Color(0xff3F9CCF).withOpacity(0.5);
 
   double buttonBorderRadius = 5;
+
+  //region Custom Colors
+  static Color blueTextColor = const Color(0xff1C508E);
+
+  //endregion
+
 
 }
