@@ -10,6 +10,7 @@ import '../../../backend/navigation/navigation_operation_parameters.dart';
 import '../../../backend/navigation/navigation_type.dart';
 import '../../../configs/constants.dart';
 import '../../../utils/shared_pref_manager.dart';
+import '../components/app_logo_widget.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String routeName = "/SplashScreen";
@@ -36,12 +37,22 @@ class _SplashScreenState extends State<SplashScreen> {
     }
 
     if(context.checkMounted() && context.mounted) {
-      NavigationController.navigateToSelectLanguageScreen(
+
+      // NavigationController.navigateToSelectLanguageScreen(
+      //   navigationOperationParameters: NavigationOperationParameters(
+      //     context: context,
+      //     navigationType: NavigationType.pushNamedAndRemoveUntil,
+      //   ),
+      // );
+
+      NavigationController.navigateToSignUpScreen(
         navigationOperationParameters: NavigationOperationParameters(
           context: context,
           navigationType: NavigationType.pushNamedAndRemoveUntil,
         ),
       );
+
+
     }
 
     /* String tag = MyUtils.getNewId();
@@ -137,16 +148,12 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     themeData = Theme.of(context);
-    return SafeArea(
+    return const SafeArea(
       child: Scaffold(
         body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 30),
+          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 30),
           child:  Center(
-            child: Image.asset(
-              "assets/basic/splash_image.png",
-              width: 200,
-              height: 150,
-            ),
+            child: AppLogoWidget(),
           ),
 
           // Column(

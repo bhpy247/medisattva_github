@@ -21,18 +21,27 @@ class CommonButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      elevation: backGroundColor == null ? 0 : 2,
-      onPressed: onTap,
-      color: backGroundColor,
-      shape: RoundedRectangleBorder(
-        side: BorderSide(color: borderColor ?? Colors.transparent),
-      ),
-      child: CommonText(
-        text: text,
-        color: textColor ?? Colors.black,
-        fontWeight:fontWeight ,
-      ),
+    return Row(
+      children: [
+        Expanded(
+          child: MaterialButton(
+            elevation: backGroundColor == null ? 0 : 2,
+            onPressed: onTap,
+            color: backGroundColor,
+            shape: RoundedRectangleBorder(
+              side: BorderSide(color: borderColor ?? Colors.transparent),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
+              child: CommonText(
+                text: text,
+                color: textColor ?? Colors.black,
+                fontWeight:fontWeight ,
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

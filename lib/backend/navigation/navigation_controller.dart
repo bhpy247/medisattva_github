@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:medisattva_github/views/authentication/screens/login_screen.dart';
 
 import '../../utils/my_print.dart';
+import '../../views/authentication/screens/otp_screen.dart';
+import '../../views/authentication/screens/sign_up_screen.dart';
 import '../../views/common/screens/select_language_screen.dart';
 import '../../views/common/screens/splash_screen.dart';
-import 'navigation_arguments.dart';
 import 'navigation_operation.dart';
 import 'navigation_operation_parameters.dart';
 
@@ -80,28 +82,24 @@ class NavigationController {
           page = parseSelectLanguageScreen(settings: settings);
           break;
         }
-      // case OtpScreen.routeName:
-      //   {
-      //     page = parseOtpScreen(settings: settings);
-      //     break;
-      //   }
-      //
-      // case CreateAnAccountScreen.routeName:
-      //   {
-      //     page = parseCreateAccountScreen(settings: settings);
-      //     break;
-      //   }
-      // case HomeScreen.routeName:
-      //   {
-      //     page = parseHomeScreen(settings: settings);
-      //     break;
-      //   }
-      //
-      // case NotificationScreen.routeName:
-      //   {
-      //     page = parseNotificationScreen(settings: settings);
-      //     break;
-      //   }
+
+      case SignUpScreen.routeName:
+        {
+          page = parseSignUpScreen(settings: settings);
+          break;
+        }
+
+      case OTPScreen.routeName:
+        {
+          page = parseOTPScreen(settings: settings);
+          break;
+        }
+
+      case LoginScreen.routeName:
+        {
+          page = parseLoginScreen(settings: settings);
+          break;
+        }
     }
 
     if (page != null) {
@@ -159,12 +157,22 @@ class NavigationController {
   }*/
 
   //region Parse Page From RouteSettings
-  // static Widget? parseLoginScreen({required RouteSettings settings}) {
-  //   return const LoginScreen();
-  // }
+
+
+  static Widget? parseLoginScreen({required RouteSettings settings}) {
+    return const LoginScreen();
+  }
 
   static Widget? parseSelectLanguageScreen({required RouteSettings settings}) {
     return const SelectLanguageScreen();
+  }
+
+  static Widget? parseSignUpScreen({required RouteSettings settings}) {
+    return const SignUpScreen();
+  }
+
+  static Widget? parseOTPScreen({required RouteSettings settings}) {
+    return const OTPScreen();
   }
 
   // static Widget? parseOtpScreen({required RouteSettings settings}) {
@@ -181,17 +189,32 @@ class NavigationController {
   //endregion
 
   //region Navigation Methods
-  // static Future<dynamic> navigateToLoginScreen({required NavigationOperationParameters navigationOperationParameters}) {
-  //   return NavigationOperation.navigate(
-  //       navigationOperationParameters: navigationOperationParameters.copyWith(
-  //     routeName: LoginScreen.routeName,
-  //   ));
-  // }
+
+  static Future<dynamic> navigateToLoginScreen({required NavigationOperationParameters navigationOperationParameters}) {
+    return NavigationOperation.navigate(
+        navigationOperationParameters: navigationOperationParameters.copyWith(
+      routeName: LoginScreen.routeName,
+    ));
+  }
 
   static Future<dynamic> navigateToSelectLanguageScreen({required NavigationOperationParameters navigationOperationParameters}) {
     return NavigationOperation.navigate(
         navigationOperationParameters: navigationOperationParameters.copyWith(
       routeName: SelectLanguageScreen.routeName,
+    ));
+  }
+
+  static Future<dynamic> navigateToSignUpScreen({required NavigationOperationParameters navigationOperationParameters}) {
+    return NavigationOperation.navigate(
+        navigationOperationParameters: navigationOperationParameters.copyWith(
+      routeName: SignUpScreen.routeName,
+    ));
+  }
+
+  static Future<dynamic> navigateToOTPScreen({required NavigationOperationParameters navigationOperationParameters}) {
+    return NavigationOperation.navigate(
+        navigationOperationParameters: navigationOperationParameters.copyWith(
+      routeName: OTPScreen.routeName,
     ));
   }
 

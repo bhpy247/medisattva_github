@@ -5,8 +5,12 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
 import '../../../backend/common/app_provider.dart';
+import '../../../backend/navigation/navigation_controller.dart';
+import '../../../backend/navigation/navigation_operation_parameters.dart';
+import '../../../backend/navigation/navigation_type.dart';
 import '../../../configs/constants.dart';
 import '../../../utils/shared_pref_manager.dart';
+import '../components/app_logo_widget.dart';
 
 class SelectLanguageScreen extends StatefulWidget {
   static const String routeName = "/SelectLanguageScreen";
@@ -20,43 +24,36 @@ class SelectLanguageScreen extends StatefulWidget {
 class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
   late ThemeData themeData;
   SharedPrefManager prefManager = SharedPrefManager();
+  late AppLocalizations? localizations;
 
   @override
   Widget build(BuildContext context) {
+    localizations = AppLocalizations.of(context);
     themeData = Theme.of(context);
     return SafeArea(
       child: Scaffold(
-        body: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  "assets/basic/splash_image.png",
-                  width: 200,
-                  height: 148,
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 58,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 23.0),
-              child: CommonText(
+        body: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 25),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const SizedBox(
+                height: 200,
+              ),
+              const AppLogoWidget(),
+              const SizedBox(
+                height: 45,
+              ),
+              CommonText(
                 text: "Select  language/bhasha",
                 fontWeight: FontWeight.w600,
                 fontSize: 18,
               ),
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 23.0),
-              child: Row(
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
                 children: [
                   Expanded(
                     child: CommonButton(
@@ -89,9 +86,9 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                     ),
                   )
                 ],
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );
