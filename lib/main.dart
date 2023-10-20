@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:medisattva_github/backend/authentication/authentication_provider.dart';
 import 'package:medisattva_github/utils/my_print.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider<AppThemeProvider>(create: (_) => AppThemeProvider(), lazy: false),
         ChangeNotifierProvider<AppProvider>(create: (_) => AppProvider(), lazy: false),
+        ChangeNotifierProvider<AuthenticationProvider>(create: (_) => AuthenticationProvider(), lazy: false),
       ],
       child: const MainApp(),
     );

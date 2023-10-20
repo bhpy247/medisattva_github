@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:medisattva_github/views/authentication/screens/forgot_password_screen.dart';
 import 'package:medisattva_github/views/authentication/screens/login_screen.dart';
 
 import '../../utils/my_print.dart';
@@ -100,6 +101,12 @@ class NavigationController {
           page = parseLoginScreen(settings: settings);
           break;
         }
+
+        case ForgotPasswordScreen.routeName:
+        {
+          page = parseForgotPasswordScreen(settings: settings);
+          break;
+        }
     }
 
     if (page != null) {
@@ -174,6 +181,9 @@ class NavigationController {
   static Widget? parseOTPScreen({required RouteSettings settings}) {
     return const OTPScreen();
   }
+  static Widget? parseForgotPasswordScreen({required RouteSettings settings}) {
+    return const ForgotPasswordScreen();
+  }
 
   // static Widget? parseOtpScreen({required RouteSettings settings}) {
   //   dynamic argument = settings.arguments;
@@ -215,6 +225,13 @@ class NavigationController {
     return NavigationOperation.navigate(
         navigationOperationParameters: navigationOperationParameters.copyWith(
       routeName: OTPScreen.routeName,
+    ));
+  }
+
+  static Future<dynamic> navigateToForgotPasswordScreen({required NavigationOperationParameters navigationOperationParameters}) {
+    return NavigationOperation.navigate(
+        navigationOperationParameters: navigationOperationParameters.copyWith(
+      routeName: ForgotPasswordScreen.routeName,
     ));
   }
 

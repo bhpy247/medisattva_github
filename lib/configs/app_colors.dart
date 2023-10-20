@@ -14,7 +14,7 @@ class Styles{
 
   //endregion
 
-  Color lightPrimaryColor = const Color(0xffBE2626);
+  Color lightPrimaryColor = const Color(0xffD94444);
   Color darkPrimaryColor = const Color(0xffBE2626);
 
   Color lightPrimaryVariant = const Color(0xffBE2626).withOpacity(0.6);
