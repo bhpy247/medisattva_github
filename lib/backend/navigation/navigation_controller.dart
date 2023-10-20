@@ -5,7 +5,9 @@ import 'package:medisattva_github/views/authentication/screens/forgot_password_s
 import 'package:medisattva_github/views/authentication/screens/login_screen.dart';
 
 import '../../utils/my_print.dart';
+import '../../views/authentication/screens/new_password_screen.dart';
 import '../../views/authentication/screens/otp_screen.dart';
+import '../../views/authentication/screens/password_verification_screen.dart';
 import '../../views/authentication/screens/sign_up_screen.dart';
 import '../../views/common/screens/select_language_screen.dart';
 import '../../views/common/screens/splash_screen.dart';
@@ -107,6 +109,18 @@ class NavigationController {
           page = parseForgotPasswordScreen(settings: settings);
           break;
         }
+
+        case PasswordVerificationScreen.routeName:
+        {
+          page = parsePasswordVerificationScreen(settings: settings);
+          break;
+        }
+
+        case NewPasswordScreen.routeName:
+        {
+          page = parseForgotPasswordScreen(settings: settings);
+          break;
+        }
     }
 
     if (page != null) {
@@ -185,6 +199,14 @@ class NavigationController {
     return const ForgotPasswordScreen();
   }
 
+  static Widget? parsePasswordVerificationScreen({required RouteSettings settings}) {
+    return const PasswordVerificationScreen();
+  }
+
+  static Widget? parseNewPasswordScreen({required RouteSettings settings}) {
+    return const NewPasswordScreen();
+  }
+
   // static Widget? parseOtpScreen({required RouteSettings settings}) {
   //   dynamic argument = settings.arguments;
   //   if (argument is OtpScreenNavigationArguments) {
@@ -232,6 +254,20 @@ class NavigationController {
     return NavigationOperation.navigate(
         navigationOperationParameters: navigationOperationParameters.copyWith(
       routeName: ForgotPasswordScreen.routeName,
+    ));
+  }
+
+  static Future<dynamic> navigateToPasswordVerificationScreen({required NavigationOperationParameters navigationOperationParameters}) {
+    return NavigationOperation.navigate(
+        navigationOperationParameters: navigationOperationParameters.copyWith(
+      routeName: PasswordVerificationScreen.routeName,
+    ));
+  }
+
+  static Future<dynamic> navigateToNewPasswordScreen({required NavigationOperationParameters navigationOperationParameters}) {
+    return NavigationOperation.navigate(
+        navigationOperationParameters: navigationOperationParameters.copyWith(
+      routeName: NewPasswordScreen.routeName,
     ));
   }
 

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:medisattva_github/utils/my_safe_state.dart';
 import 'package:medisattva_github/views/common/components/common_button.dart';
 import 'package:medisattva_github/views/common/components/common_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 import '../../common/components/app_logo_widget.dart';
+import '../components/pin_put.dart';
 
 class OTPScreen extends StatefulWidget {
   static const String routeName = "/OTPScreen";
@@ -19,6 +21,11 @@ class _OTPScreenState extends State<OTPScreen> with MySafeState{
   late ThemeData themeData;
   late AppLocalizations? localizations;
   bool isLoading = false;
+  final FocusNode _otpFocusNode = FocusNode();
+  TextEditingController _otpController = TextEditingController();
+
+
+
 
   String msg = "", otpErrorMsg = "";
   bool isInVerification = false;
@@ -254,6 +261,13 @@ class _OTPScreenState extends State<OTPScreen> with MySafeState{
   // }
 
   @override
+  void initState() {
+    super.initState();
+    _otpFocusNode.requestFocus();
+
+  }
+
+  @override
   Widget build(BuildContext context) {
     super.pageBuild();
     localizations = AppLocalizations.of(context);
@@ -275,21 +289,65 @@ class _OTPScreenState extends State<OTPScreen> with MySafeState{
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   CommonText(
-                    text: "Get Started",
+                    text: "Enter OTP",
                     fontWeight: FontWeight.w600,
                     fontSize: 18,
                   ),
                 ],
               ),
               const SizedBox(
-                height: 15,
+                height: 10,
               ),
-
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: CommonText(
+                      text: 'Please enter the one time password you received on your mobile.',
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                      color: Colors.grey,
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  CommonText(
+                    text: "Enter 6 digit OTP",
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              getOTPCodePinPut(),
+              const SizedBox(
+                height: 5,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: CommonText(
+                      text: "Did not received the otp on your mobile number?",
+                      fontSize: 16,
+                      color: Colors.black54,
+                    ),
+                  ),
+                ],
+              ),
               const SizedBox(
                 height: 20,
               ),
               CommonButton(
-                text: "Continue",
+                text: "Sign Up Screen",
                 onTap: () {},
                 textColor: themeData.primaryColor,
                 borderColor: themeData.primaryColor,
@@ -301,4 +359,59 @@ class _OTPScreenState extends State<OTPScreen> with MySafeState{
       ),
     );
   }
+
+  Widget getOTPCodePinPut(){
+    BoxDecoration _pinPutDecoration = BoxDecoration(
+      color: Colors.white,
+      border: Border.all(color: Colors.white),
+      borderRadius: BorderRadius.circular(5),
+    );
+    return PinPut(
+      fieldsCount: 6,
+      onSubmit: (String pin) {
+        _otpFocusNode.unfocus();
+      },
+      checkClipboard: true,
+      onClipboardFound: (String? string) {
+        _otpController.text = string ?? "";
+      },
+      inputFormatters: [
+        FilteringTextInputFormatter.deny(" "),
+        FilteringTextInputFormatter.digitsOnly,
+      ],
+      enabled: true,
+      focusNode: _otpFocusNode,
+      controller: _otpController,
+      eachFieldWidth: 50,
+      eachFieldHeight: 50,
+      submittedFieldDecoration: _pinPutDecoration,
+      selectedFieldDecoration: _pinPutDecoration,
+      disabledDecoration: _pinPutDecoration,
+      followingFieldDecoration: _pinPutDecoration.copyWith(
+        borderRadius: BorderRadius.circular(5.0),
+        border: Border.all(
+          color: Colors.white,
+        ),
+      ),
+      //disabledDecoration: _pinPutDecoration,
+      textStyle: themeData.textTheme.titleMedium,
+    );
+  }
+
+  Widget  getOTPSecondes(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Expanded(
+          child: CommonText(
+            text: "Kindly enter the OTP in 00:50 Sec",
+            fontWeight: FontWeight.w500,
+            fontSize: 16,
+          ),
+        )
+      ],
+    );
+  }
+
+
 }
