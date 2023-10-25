@@ -102,8 +102,6 @@ class _LoginScreenState extends State<LoginScreen> {
                       NavigationController.navigateToSignUpScreen(
                           navigationOperationParameters: NavigationOperationParameters(context: context, navigationType: NavigationType.pushNamedAndRemoveUntil));
                     },
-                    textColor: Colors.white,
-                    backGroundColor: themeData.primaryColor,
                     fontWeight: FontWeight.w600,
                     borderColor: null,
                   ),

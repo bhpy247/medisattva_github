@@ -63,9 +63,7 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                         provider.selectedLocale.set(value: Locale("${AppLocalizations.supportedLocales.first}"));
                         prefManager.setString(SharePreferenceKeys.selectedLanguage, "${AppLocalizations.supportedLocales.first}");
                       },
-                      backGroundColor: themeData.primaryColor,
                       borderColor: themeData.primaryColor,
-                      textColor: Colors.white,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
@@ -80,9 +78,10 @@ class _SelectLanguageScreenState extends State<SelectLanguageScreen> {
                         provider.selectedLocale.set(value: Locale("${AppLocalizations.supportedLocales.last}"));
                         prefManager.setString(SharePreferenceKeys.selectedLanguage, "${AppLocalizations.supportedLocales.last}");
                       },
-                      textColor: themeData.primaryColor,
+                      isOriginal: false,
                       borderColor: themeData.primaryColor,
                       fontWeight: FontWeight.w600,
+
                     ),
                   )
                 ],

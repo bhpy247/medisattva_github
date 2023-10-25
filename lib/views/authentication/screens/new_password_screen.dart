@@ -83,8 +83,6 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                   CommonButton(
                     text: "Save",
                     onTap: () {},
-                    textColor:Colors.white,
-                    backGroundColor: themeData.primaryColor,
                     fontWeight: FontWeight.w600, borderColor: null,
                   ),
                   const SizedBox(

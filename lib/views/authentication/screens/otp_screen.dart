@@ -4,7 +4,8 @@ import 'package:medisattva_github/utils/my_safe_state.dart';
 import 'package:medisattva_github/views/common/components/common_button.dart';
 import 'package:medisattva_github/views/common/components/common_text.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
+import 'package:timer_count_down/timer_count_down.dart';
+import '../../../utils/parsing_helper.dart';
 import '../../common/components/app_logo_widget.dart';
 import '../components/pin_put.dart';
 
@@ -35,7 +36,7 @@ class _OTPScreenState extends State<OTPScreen> with MySafeState{
   bool isShowResendOtp = false;
   bool isOTPSent = false;
   bool isOtpEnabled = false;
-  bool isTimerOn = false;
+  bool isTimerOn = true;
   bool isOtpSending = false;
   String? verificationId;
 
@@ -281,6 +282,9 @@ class _OTPScreenState extends State<OTPScreen> with MySafeState{
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              const SizedBox(
+                height: 100,
+              ),
               const AppLogoWidget(),
               const SizedBox(
                 height: 25,
@@ -329,7 +333,7 @@ class _OTPScreenState extends State<OTPScreen> with MySafeState{
               ),
               getOTPCodePinPut(),
               const SizedBox(
-                height: 5,
+                height: 8,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -337,7 +341,7 @@ class _OTPScreenState extends State<OTPScreen> with MySafeState{
                   Expanded(
                     child: CommonText(
                       text: "Did not received the otp on your mobile number?",
-                      fontSize: 16,
+                      fontSize: 14,
                       color: Colors.black54,
                     ),
                   ),
@@ -346,10 +350,13 @@ class _OTPScreenState extends State<OTPScreen> with MySafeState{
               const SizedBox(
                 height: 20,
               ),
+              getRemainTime(),
+              const SizedBox(
+                height: 40,
+              ),
               CommonButton(
                 text: "Sign Up Screen",
                 onTap: () {},
-                textColor: themeData.primaryColor,
                 borderColor: themeData.primaryColor,
                 fontWeight: FontWeight.w600,
               )
@@ -362,12 +369,14 @@ class _OTPScreenState extends State<OTPScreen> with MySafeState{
 
   Widget getOTPCodePinPut(){
     BoxDecoration _pinPutDecoration = BoxDecoration(
-      color: Colors.white,
-      border: Border.all(color: Colors.white),
+      color: Colors.transparent,
+      border: Border.all(color: Colors.black54),
       borderRadius: BorderRadius.circular(5),
     );
     return PinPut(
       fieldsCount: 6,
+
+
       onSubmit: (String pin) {
         _otpFocusNode.unfocus();
       },
@@ -387,29 +396,49 @@ class _OTPScreenState extends State<OTPScreen> with MySafeState{
       submittedFieldDecoration: _pinPutDecoration,
       selectedFieldDecoration: _pinPutDecoration,
       disabledDecoration: _pinPutDecoration,
-      followingFieldDecoration: _pinPutDecoration.copyWith(
-        borderRadius: BorderRadius.circular(5.0),
-        border: Border.all(
-          color: Colors.white,
-        ),
-      ),
-      //disabledDecoration: _pinPutDecoration,
+      followingFieldDecoration: _pinPutDecoration,
       textStyle: themeData.textTheme.titleMedium,
+      inputDecoration: InputDecoration(
+          border: InputBorder.none,
+          disabledBorder: InputBorder.none,
+          enabledBorder: InputBorder.none,
+          focusedBorder: InputBorder.none,
+          errorBorder: InputBorder.none,
+          focusedErrorBorder: InputBorder.none,
+          counterText: ''),
     );
   }
 
-  Widget  getOTPSecondes(){
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Expanded(
-          child: CommonText(
-            text: "Kindly enter the OTP in 00:50 Sec",
-            fontWeight: FontWeight.w500,
-            fontSize: 16,
+  Widget getRemainTime(){
+    // if (!isTimerOn) return const SizedBox.shrink();
+    formatedTime({required double timeInSecond}) {
+      int time = ParsingHelper.parseIntMethod(timeInSecond);
+      int sec = time % 60;
+      int min = (time / 60).floor();
+      String minute = min.toString().length <= 1 ? "0$min" : "$min";
+      String second = sec.toString().length <= 1 ? "0$sec" : "$sec";
+      return "Kindly enter the OTP in $minute:$second";
+    }
+    return Padding(
+      padding:  EdgeInsets.only(top: 10.0,bottom: 0),
+      child: Row(
+        children: [
+          Countdown(
+            // controller: _controller,
+            seconds: otpDuration.toInt(),
+            build: (_, double time) =>
+                CommonText(
+                  text: formatedTime(timeInSecond: time),
+                  textAlign: TextAlign.start,
+                  fontWeight: FontWeight.w600,
+                ),
+            interval: Duration(seconds: 1),
+            onFinished: () {
+
+            },
           ),
-        )
-      ],
+        ],
+      ),
     );
   }
 

@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
       //   ),
       // );
 
-      NavigationController.navigateToLoginScreen(
+      NavigationController.navigateToOTPScreen(
         navigationOperationParameters: NavigationOperationParameters(
           context: context,
           navigationType: NavigationType.pushNamedAndRemoveUntil,

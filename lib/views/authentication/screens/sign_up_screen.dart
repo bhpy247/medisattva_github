@@ -117,8 +117,6 @@ class _SignUpScreenState extends State<SignUpScreen> with MySafeState {
                     CommonButton(
                       text: "Continue",
                       onTap: () {},
-                      textColor: Colors.white,
-                      backGroundColor: themeData.primaryColor,
                       fontWeight: FontWeight.w600,
                       borderColor: null,
                     )

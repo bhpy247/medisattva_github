@@ -59,6 +59,8 @@ dependencies:
   intl: any
   flutter_localization: ^0.1.14
   loading_animation_widget: ^1.2.0+4
+  timer_count_down: ^2.2.2
+
 
 
 

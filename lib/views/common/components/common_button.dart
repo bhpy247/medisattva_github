@@ -4,30 +4,32 @@ import 'package:medisattva_github/views/common/components/common_text.dart';
 class CommonButton extends StatelessWidget {
   final Function()? onTap;
   final String text;
-  final Color? backGroundColor, borderColor, textColor;
+  final Color? borderColor;
   final double borderRadius;
   final FontWeight fontWeight;
+  final bool isOriginal;
 
   const CommonButton({
     super.key,
     this.onTap,
     required this.text,
-    this.backGroundColor,
     required this.borderColor,
-    this.textColor = Colors.black,
     this.borderRadius = 5,
-    this.fontWeight = FontWeight.normal
+    this.fontWeight = FontWeight.normal,
+    this.isOriginal = true
   });
 
   @override
   Widget build(BuildContext context) {
+    late ThemeData themeData = Theme.of(context);
+
     return Row(
       children: [
         Expanded(
           child: MaterialButton(
-            elevation: backGroundColor == null ? 0 : 2,
+            elevation: isOriginal ? 2:0,
             onPressed: onTap,
-            color: backGroundColor,
+            color: isOriginal ? themeData.primaryColor : Colors.transparent,
             shape: RoundedRectangleBorder(
               side: BorderSide(color: borderColor ?? Colors.transparent),
             ),
@@ -35,7 +37,7 @@ class CommonButton extends StatelessWidget {
               padding: const EdgeInsets.symmetric(vertical: 12.0),
               child: CommonText(
                 text: text,
-                color: textColor ?? Colors.black,
+                color: isOriginal ? Colors.white : themeData.primaryColor,
                 fontWeight:fontWeight ,
               ),
             ),

@@ -79,8 +79,6 @@ class _PasswordVerificationScreenState extends State<PasswordVerificationScreen>
                   CommonButton(
                     text: "Save",
                     onTap: () {},
-                    textColor:Colors.white,
-                    backGroundColor: themeData.primaryColor,
                     fontWeight: FontWeight.w600, borderColor: null,
                   ),
                   const SizedBox(

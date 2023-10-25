@@ -83,8 +83,6 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                   CommonButton(
                     text: "Continue",
                     onTap: () {},
-                    textColor:Colors.white,
-                    backGroundColor: themeData.primaryColor,
                     fontWeight: FontWeight.w600, borderColor: null,
                   ),
                   const SizedBox(
