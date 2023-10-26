@@ -11,6 +11,7 @@ import '../../views/authentication/screens/password_verification_screen.dart';
 import '../../views/authentication/screens/sign_up_screen.dart';
 import '../../views/common/screens/select_language_screen.dart';
 import '../../views/common/screens/splash_screen.dart';
+import '../../views/home/screens/home_screen.dart';
 import 'navigation_operation.dart';
 import 'navigation_operation_parameters.dart';
 
@@ -78,6 +79,11 @@ class NavigationController {
       case "/":
         {
           page = const SplashScreen();
+          break;
+        }
+      case HomeScreen.routeName:
+        {
+          page = parseHomeScreen(settings: settings);
           break;
         }
       case SelectLanguageScreen.routeName:
@@ -184,6 +190,10 @@ class NavigationController {
     return const LoginScreen();
   }
 
+  static Widget? parseHomeScreen({required RouteSettings settings}) {
+    return const HomeScreen();
+  }
+
   static Widget? parseSelectLanguageScreen({required RouteSettings settings}) {
     return const SelectLanguageScreen();
   }
@@ -279,14 +289,14 @@ class NavigationController {
   //   ));
   // }
 
-  // static Future<dynamic> navigateToHomeScreen({
-  //   required NavigationOperationParameters navigationOperationParameters,
-  // }) {
-  //   return NavigationOperation.navigate(
-  //       navigationOperationParameters: navigationOperationParameters.copyWith(
-  //     routeName: HomeScreen.routeName,
-  //   ));
-  // }
+  static Future<dynamic> navigateToHomeScreen({
+    required NavigationOperationParameters navigationOperationParameters,
+  }) {
+    return NavigationOperation.navigate(
+        navigationOperationParameters: navigationOperationParameters.copyWith(
+      routeName: HomeScreen.routeName,
+    ));
+  }
 
 
 

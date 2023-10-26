@@ -276,6 +276,7 @@ class _OTPScreenState extends State<OTPScreen> with MySafeState{
 
     return SafeArea(
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Container(
           padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 25),
           child: Column(
