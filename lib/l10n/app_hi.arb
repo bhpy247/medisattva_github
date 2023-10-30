@@ -1,3 +1,11 @@
 {
-  "helloWorld": "हैलो वर्ल्ड"
+  "helloWorld": "हैलो वर्ल्ड",
+  "drawer_my_profile": "My profile",
+  "drawer_notification": "Notifications",
+  "drawer_change_password": "Change password",
+  "drawer_support": "Support",
+  "drawer_t_and_c": "Terms and Conditions",
+  "drawer_privacy_policy": "Privacy Policy",
+  "drawer_logout": "Log out",
+  "drawer_delete_account": "Delete Account"
 }

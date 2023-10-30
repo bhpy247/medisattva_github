@@ -45,7 +45,7 @@ class _SplashScreenState extends State<SplashScreen> {
       //   ),
       // );
 
-      NavigationController.navigateToHomeScreen(
+      NavigationController.navigateToEditProfileScreen(
         navigationOperationParameters: NavigationOperationParameters(
           context: context,
           navigationType: NavigationType.pushNamedAndRemoveUntil,

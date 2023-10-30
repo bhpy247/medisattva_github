@@ -14,6 +14,12 @@ class Styles{
 
   //endregion
 
+  //region Custom Colors
+  static Color blueTextColor = const Color(0xff1C508E);
+  static Color successGreen = const Color(0xff047857);
+
+  //endregion
+
   Color lightPrimaryColor = const Color(0xffD94444);
   Color darkPrimaryColor = const Color(0xffBE2626);
 
@@ -48,11 +54,6 @@ class Styles{
   Color darkFocusedTextFormFieldColor = const Color(0xff3F9CCF).withOpacity(0.5);
 
   double buttonBorderRadius = 5;
-
-  //region Custom Colors
-  static Color blueTextColor = const Color(0xff1C508E);
-
-  //endregion
 
 
 }

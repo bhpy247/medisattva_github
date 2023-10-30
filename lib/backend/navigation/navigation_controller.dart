@@ -11,6 +11,7 @@ import '../../views/authentication/screens/password_verification_screen.dart';
 import '../../views/authentication/screens/sign_up_screen.dart';
 import '../../views/common/screens/select_language_screen.dart';
 import '../../views/common/screens/splash_screen.dart';
+import '../../views/drawer_screens/screens/edit_profile_screen.dart';
 import '../../views/home/screens/home_screen.dart';
 import 'navigation_operation.dart';
 import 'navigation_operation_parameters.dart';
@@ -127,6 +128,12 @@ class NavigationController {
           page = parseForgotPasswordScreen(settings: settings);
           break;
         }
+
+        case EditProfileScreen.routeName:
+        {
+          page = parseEditProfileScreen(settings: settings);
+          break;
+        }
     }
 
     if (page != null) {
@@ -217,6 +224,10 @@ class NavigationController {
     return const NewPasswordScreen();
   }
 
+  static Widget? parseEditProfileScreen({required RouteSettings settings}) {
+    return const EditProfileScreen();
+  }
+
   // static Widget? parseOtpScreen({required RouteSettings settings}) {
   //   dynamic argument = settings.arguments;
   //   if (argument is OtpScreenNavigationArguments) {
@@ -278,6 +289,13 @@ class NavigationController {
     return NavigationOperation.navigate(
         navigationOperationParameters: navigationOperationParameters.copyWith(
       routeName: NewPasswordScreen.routeName,
+    ));
+  }
+
+  static Future<dynamic> navigateToEditProfileScreen({required NavigationOperationParameters navigationOperationParameters}) {
+    return NavigationOperation.navigate(
+        navigationOperationParameters: navigationOperationParameters.copyWith(
+      routeName: EditProfileScreen.routeName,
     ));
   }
 
