@@ -17,6 +17,7 @@ class Styles{
   //region Custom Colors
   static Color blueTextColor = const Color(0xff1C508E);
   static Color successGreen = const Color(0xff047857);
+  static Color termsTextColor = const Color(0xff585858);
 
   //endregion
 

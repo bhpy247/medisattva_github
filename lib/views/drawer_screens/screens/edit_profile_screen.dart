@@ -30,6 +30,11 @@ class _EditProfileScreenState extends State<EditProfileScreen> with MySafeState{
   List<String> genderList = ["Male", "Female", "Other"];
   String selectedGender = "Male";
 
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController surNameController = TextEditingController();
+  TextEditingController mobileNumberController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+
   Future<void> pickDate() async {
     DateTime? dateTime = await showDatePicker(
       context: context,
@@ -74,7 +79,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> with MySafeState{
                 const SizedBox(
                   height: 20,
                 ),
-                CommonBackTopBar(title: 'Edit Profile'),
+                CommonBackTopBar(title: localizations?.header_edit_profile ?? 'Edit Profile'),
                 Expanded(child: getMainBody()),
                 const SizedBox(
                   height: 20,
@@ -103,7 +108,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> with MySafeState{
               height: 20,
             ),
             CommonButton(
-              text: "Save Changes",
+              text: localizations?.save_changes_edit_profile ??  "Save Changes",
               onTap: () {},
               fontWeight: FontWeight.w600, borderColor: null,
             ),
@@ -141,8 +146,6 @@ class _EditProfileScreenState extends State<EditProfileScreen> with MySafeState{
           height: 15,
         ),
         getContactAndPasswordWidget(),
-
-
       ],
     );
  }
@@ -151,11 +154,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> with MySafeState{
     return Column(
       children: [
         CommonTextFormField(
-          title: 'First name',
+          controller: firstNameController,
+          title: localizations?.firstname_edit_profile ?? 'First name',
           hintText: 'Hemang',
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return "  Please enter first name";
+              return localizations?.first_name_validation_edit_profile ?? "  Please enter first name";
             }
             return null;
           },
@@ -164,11 +168,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> with MySafeState{
           height: 15,
         ),
         CommonTextFormField(
-          title: 'Surname',
+          controller: surNameController,
+          title:localizations?.surname_edit_profile ??  'Surname',
           hintText: 'Dave',
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return "  Please enter surname";
+              return  localizations?.surname_validation_edit_profile ?? "  Please enter surname";
             }
             return null;
           },
@@ -189,7 +194,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> with MySafeState{
             await pickDate();
           },
           child: CommonTextFormField(
-            title: 'Date of Birth',
+            title:localizations?.dob_edit_profile ??  'Date of Birth',
             hintText: dateOfBirth != null ? DatePresentation.ddMMyyyyFormatter(dateOfBirth!.millisecondsSinceEpoch.toString()) : 'Date of Birth',
             enabled: false,
           ),
@@ -204,7 +209,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> with MySafeState{
         Row(
           children: [
             CommonText(
-              text: "Gender",
+              text: localizations?.gender_edit_profile ?? "Gender",
               fontSize: 13,
               fontWeight: FontWeight.w500,
               color: Colors.black87,
@@ -252,11 +257,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> with MySafeState{
     return Column(
       children: [
         CommonTextFormField(
-          title: 'Mobile Number',
+          controller: mobileNumberController,
+          title:localizations?.mobile_number_edit_profile ??  'Mobile Number',
           hintText: '8980018373',
           validator: (value) {
             if (value == null || value.isEmpty) {
-              return "  Please enter mobile number";
+              return localizations?.mobile_number_validation_edit_profile ?? "  Please enter mobile number";
             }
             return null;
           },
@@ -265,9 +271,10 @@ class _EditProfileScreenState extends State<EditProfileScreen> with MySafeState{
           height: 15,
         ),
         CommonTextFormField(
-          title: 'Email Address',
+          controller: emailController,
+          title: localizations?.email_address_edit_profile ?? 'Email Address',
           hintText: 'Hemangdave18@gmail.com',
-          titleExtra: '(optional)',
+          titleExtra:localizations?.optional_email_edit_profile ??  '(optional)',
         ),
         SizedBox(
           height: 15,

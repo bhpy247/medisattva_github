@@ -103,25 +103,19 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
         CommonTextFormField(
           title: 'New Password',
           hintText: 'New Password',
-          obscureText: isObscure,
-          suffixIcon: InkWell(
-              onTap: () {
-                isObscure = !isObscure;
-                setState(() {});
-              },
-              child: Icon(!isObscure ? Icons.visibility_outlined : Icons.visibility_off_outlined, color: Colors.grey)),
+          // obscureText: isObscure,
+          // suffixIcon: InkWell(
+          //     onTap: () {
+          //       isObscure = !isObscure;
+          //       setState(() {});
+          //     },
+          //     child: Icon(!isObscure ? Icons.visibility_outlined : Icons.visibility_off_outlined, color: Colors.grey)),
+          //
         ),
         SizedBox(height: 25,),
         CommonTextFormField(
           title: 'Confirm Password',
           hintText: 'Confirm Password',
-          obscureText: isObscure,
-          suffixIcon: InkWell(
-              onTap: () {
-                isObscure = !isObscure;
-                setState(() {});
-              },
-              child: Icon(!isObscure ? Icons.visibility_outlined : Icons.visibility_off_outlined, color: Colors.grey)),
         ),
       ],
     );

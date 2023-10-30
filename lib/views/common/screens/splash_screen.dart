@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:medisattva_github/utils/extensions.dart';
 import 'package:provider/provider.dart';
+
 import '../../../backend/common/app_provider.dart';
 import '../../../backend/navigation/navigation_controller.dart';
 import '../../../backend/navigation/navigation_operation_parameters.dart';
@@ -45,7 +46,7 @@ class _SplashScreenState extends State<SplashScreen> {
       //   ),
       // );
 
-      NavigationController.navigateToEditProfileScreen(
+      NavigationController.navigateToSupportScreen(
         navigationOperationParameters: NavigationOperationParameters(
           context: context,
           navigationType: NavigationType.pushNamedAndRemoveUntil,

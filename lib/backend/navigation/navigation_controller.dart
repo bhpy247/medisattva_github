@@ -3,6 +3,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:medisattva_github/views/authentication/screens/forgot_password_screen.dart';
 import 'package:medisattva_github/views/authentication/screens/login_screen.dart';
+import 'package:medisattva_github/views/drawer_screens/screens/drawer_create_new_password.dart';
+import 'package:medisattva_github/views/drawer_screens/screens/notification_screen.dart';
+import 'package:medisattva_github/views/drawer_screens/screens/privacy_policy_screen.dart';
+import 'package:medisattva_github/views/drawer_screens/screens/support_screen.dart';
+import 'package:medisattva_github/views/drawer_screens/screens/terms_and_conditions_screen.dart';
 
 import '../../utils/my_print.dart';
 import '../../views/authentication/screens/new_password_screen.dart';
@@ -125,13 +130,43 @@ class NavigationController {
 
         case NewPasswordScreen.routeName:
         {
-          page = parseForgotPasswordScreen(settings: settings);
+          page = parseNewPasswordScreen(settings: settings);
           break;
         }
 
         case EditProfileScreen.routeName:
         {
           page = parseEditProfileScreen(settings: settings);
+          break;
+        }
+
+        case DrawerCreateNewPasswordScreen.routeName:
+        {
+          page = parseDrawerCreateNewPasswordScreen(settings: settings);
+          break;
+        }
+
+        case NotificationScreen.routeName:
+        {
+          page = parseNotificationScreen(settings: settings);
+          break;
+        }
+
+        case PrivacyPolicyScreen.routeName:
+        {
+          page = parsePrivacyPolicyScreen(settings: settings);
+          break;
+        }
+
+        case SupportScreen.routeName:
+        {
+          page = parseSupportScreen(settings: settings);
+          break;
+        }
+
+        case TermsAndConditionsScreen.routeName:
+        {
+          page = parseTermsAndConditionsScreen(settings: settings);
           break;
         }
     }
@@ -228,6 +263,26 @@ class NavigationController {
     return const EditProfileScreen();
   }
 
+  static Widget? parseDrawerCreateNewPasswordScreen({required RouteSettings settings}) {
+    return const DrawerCreateNewPasswordScreen();
+  }
+
+  static Widget? parseNotificationScreen({required RouteSettings settings}) {
+    return const NotificationScreen();
+  }
+
+  static Widget? parsePrivacyPolicyScreen({required RouteSettings settings}) {
+    return const PrivacyPolicyScreen();
+  }
+
+  static Widget? parseSupportScreen({required RouteSettings settings}) {
+    return const SupportScreen();
+  }
+
+  static Widget? parseTermsAndConditionsScreen({required RouteSettings settings}) {
+    return const TermsAndConditionsScreen();
+  }
+
   // static Widget? parseOtpScreen({required RouteSettings settings}) {
   //   dynamic argument = settings.arguments;
   //   if (argument is OtpScreenNavigationArguments) {
@@ -296,6 +351,41 @@ class NavigationController {
     return NavigationOperation.navigate(
         navigationOperationParameters: navigationOperationParameters.copyWith(
       routeName: EditProfileScreen.routeName,
+    ));
+  }
+
+  static Future<dynamic> navigateToDrawerCreateNewPasswordScreen({required NavigationOperationParameters navigationOperationParameters}) {
+    return NavigationOperation.navigate(
+        navigationOperationParameters: navigationOperationParameters.copyWith(
+      routeName: DrawerCreateNewPasswordScreen.routeName,
+    ));
+  }
+
+  static Future<dynamic> navigateToNotificationScreen({required NavigationOperationParameters navigationOperationParameters}) {
+    return NavigationOperation.navigate(
+        navigationOperationParameters: navigationOperationParameters.copyWith(
+      routeName: NotificationScreen.routeName,
+    ));
+  }
+
+  static Future<dynamic> navigateToPrivacyPolicyScreen({required NavigationOperationParameters navigationOperationParameters}) {
+    return NavigationOperation.navigate(
+        navigationOperationParameters: navigationOperationParameters.copyWith(
+      routeName: PrivacyPolicyScreen.routeName,
+    ));
+  }
+
+  static Future<dynamic> navigateToSupportScreen({required NavigationOperationParameters navigationOperationParameters}) {
+    return NavigationOperation.navigate(
+        navigationOperationParameters: navigationOperationParameters.copyWith(
+      routeName: SupportScreen.routeName,
+    ));
+  }
+
+  static Future<dynamic> navigateToTermsAndConditionsScreen({required NavigationOperationParameters navigationOperationParameters}) {
+    return NavigationOperation.navigate(
+        navigationOperationParameters: navigationOperationParameters.copyWith(
+      routeName: TermsAndConditionsScreen.routeName,
     ));
   }
 

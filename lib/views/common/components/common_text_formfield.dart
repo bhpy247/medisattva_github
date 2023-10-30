@@ -74,7 +74,7 @@ class CommonTextFormField extends StatelessWidget {
             CommonText(
               text: title,
               fontSize: 13,
-              fontWeight: FontWeight.w500,
+              fontWeight: FontWeight.w600,
               color: Colors.black87,
             ),
             CommonText(

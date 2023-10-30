@@ -13,9 +13,9 @@ class CommonButton extends StatelessWidget {
     super.key,
     this.onTap,
     required this.text,
-    required this.borderColor,
+    this.borderColor,
     this.borderRadius = 5,
-    this.fontWeight = FontWeight.normal,
+    this.fontWeight = FontWeight.w600,
     this.isOriginal = true
   });
 
